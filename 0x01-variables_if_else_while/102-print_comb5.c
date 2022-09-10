@@ -9,34 +9,42 @@ int main(void)
 {
 	int units;
 	int tens;
-	int u;
-	int t;
+	int a, b, c, d;
 
-	for (units = '0'; units <= '9'; units++) /*print first two digit combo*/
+	a = b = c = d = 48;
+	while (d < 58)
 	{
-		for (tens = '0'; tens <= '9'; tens++)
+		c = 48;
+		while (c < 58)
 		{
-			for (u = units; u <= '9'; u++) /*print second of pair*/
+			b = 48;
+			while (b < 58)
 			{
-				for (t = tens + 1; t <= '9'; t++)
+				a = 48;
+				while (a < 58)
 				{
-					putchar(units);
-					putchar(tens);
-					putchar(' ');
-					putchar(u);
-					putchar(t);
-
-					if (!((units == '9' && tens == '8') && (u == '9' && t == '9')))
+					units = (d * 10) + c;
+					tens = (b * 10) + a;
+					if (units < tens)
 					{
+						putchar(d);
+						putchar(c);
+						putchar(' ');
+						putchar(b);
+						putchar(a);
+						if (d == 57 && c == 57 && b == 57 && a == 57)
+							break;
 						putchar(',');
 						putchar(' ');
 					}
+					a++;
 				}
-				u = '0';
+				b++;
 			}
+			c++;
 		}
+		d++;
 	}
 	putchar('\n');
-
 	return (0);
 }
