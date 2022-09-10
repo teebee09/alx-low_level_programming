@@ -20,7 +20,7 @@ int main(void)
 		n = rand() - RAND_MAX / 2;
 
 		a = n % 10;
-		printf("The Last digit of %i is: %i", n, a);
+		printf("The Last digit of %i is %i and is ", n, a);
 
 		if (a > 5)
 		{
