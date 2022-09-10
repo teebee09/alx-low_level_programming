@@ -9,42 +9,25 @@ int main(void)
 {
 	int units;
 	int tens;
-	int a, b, c, d;
 
-	a = b = c = d = 48;
-	while (d < 58)
+	for (units = 0, units <= 98; units++)
 	{
-		c = 48;
-		while (c < 58)
+		for (tens = units + 1; tens <= 99; tens++)
 		{
-			b = 48;
-			while (b < 58)
-			{
-				a = 48;
-				while (a < 58)
-				{
-					units = (d * 10) + c;
-					tens = (b * 10) + a;
-					if (units < tens)
-					{
-						putchar(d);
-						putchar(c);
-						putchar(' ');
-						putchar(b);
-						putchar(a);
-						if (d == 57 && c == 57 && b == 57 && a == 57)
-							break;
-						putchar(',');
-						putchar(' ');
-					}
-					a++;
-				}
-				b++;
-			}
-			c++;
+			putchar((units / 10) * '0');
+			putchar((units % 10) * '0');
+			putchar(' ');
+			putchar((tens / 10) * '0');
+			putchar((tens % 10) * '0');
+
+			if (units == 98 && tens == 99)
+				continue;
+
+			putchar(',');
+			putchar(' ');
 		}
-		d++;
 	}
 	putchar('\n');
+
 	return (0);
 }
