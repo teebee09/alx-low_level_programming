@@ -12,7 +12,7 @@ int main(void)
 
 	for (units = '0'; units <= '9'; units++)/* increment of units */
 	{
-		for (tens = (uints + 1); tens <= '9'; tens++)/* increment oftens*/
+		for (tens = (units + 1); tens <= '9'; tens++)/* increment oftens*/
 		{
 			putchar(units);
 			putchar(tens);
