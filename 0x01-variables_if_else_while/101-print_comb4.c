@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - program that prints all possible different combinations of three digits
+ * main - program that prints numb diff combinations of 3 digits
  * Return: return 0
  */
 
@@ -20,7 +20,7 @@ int main(void)
 				putchar(units);
 				putchar(tens);
 				putchar(hundreds);
-				if (units != '7' || tens != '8' || hundreds != '9' )
+				if (units != '7' || tens != '8' || hundreds != '9')
 				{
 					putchar(',');
 					putchar(' ');
