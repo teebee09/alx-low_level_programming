@@ -11,7 +11,7 @@ int main(void)
 
 	while (lalpha >= 'a')
 	{
-		putchar(lapha);
+		putchar(lalpha);
 		lalpha--;
 	}
 	putchar('\n');
