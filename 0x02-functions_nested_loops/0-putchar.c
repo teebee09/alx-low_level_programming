@@ -1,9 +1,3 @@
-/**
- * File: 0-putchar.c
- * Auth: Tijani H. Oluwatobiloba
- *
- */
-
 #include "main.h"
 
 /**
