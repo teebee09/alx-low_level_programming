@@ -17,7 +17,7 @@ int main(void)
 	for (count = 0; count < 48; count++)
 	{
 		range = num1 + num2;
-		printf(", %ld", range);
+		printf("%ld, ", range);
 		num1 = num2;
 		num2 = range;
 	}
