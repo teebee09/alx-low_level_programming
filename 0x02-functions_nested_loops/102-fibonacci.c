@@ -8,20 +8,19 @@
 int main(void)
 {
 	int count;
-	int range = 50;
+	int range;
 	long num1 = 1;
 	long num2 = 2;
 
-	for (count = 0; count <= (range / 2); count++)
+	printf("%ld, %ld", num1, num2);
+
+	for (count = 0; count < 48; count++)
 	{
-		printf("%li %li", num1, num2);
-		num1 += num2;
-		num2 += num1;
+		range = num1 + num2;
+		printf(", %ld", range);
+		num1 = num2;
+		num2 = range;
 	}
-	if (range % 2 == 1)
-		printf("%li", num1);
-
-
 	printf('\n');
 
 	return (0);
