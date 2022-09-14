@@ -19,9 +19,9 @@ int main(void)
 		num2 += num1;
 	}
 	if (range % 2 == 1)
-	{
 		printf("%li", num1);
-	}
+
+
 	printf('\n');
 
 	return (0);
