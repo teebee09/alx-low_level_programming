@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - Fns that prints lowercase alphabets
+ * print_alphabet - Fns that prints lowercase alphabets with new line
  * Return: return 0
  */
 
