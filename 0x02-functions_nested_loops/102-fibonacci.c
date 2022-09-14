@@ -8,20 +8,20 @@
 int main(void)
 {
 	int count;
-	int range;
-	long num1 = 1;
-	long num2 = 2;
+	unsigned long num1 = 0, num2 = 1, sum;
 
-	printf("%ld, %ld", num1, num2);
-
-	for (count = 0; count < 48; count++)
+	for (count = 0; count < 50; count++)
 	{
-		range = num1 + num2;
-		printf("%ld, ", range);
-		num1 = num2;
-		num2 = range;
-	}
-	printf('\n');
+		sum = num1 + num2;
+		printf("%lu", sum);
 
+		num1 = num2;
+		num2 = sum;
+
+		if (count == 49)
+			printf("\n");
+		else
+			printf(", ")
+	}
 	return (0);
 }
