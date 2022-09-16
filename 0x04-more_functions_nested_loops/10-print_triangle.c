@@ -2,8 +2,8 @@
 
 /**
  * print_triangle - Function that prints a triangle, newline
- * @size: integer to check
- * Return: return 0
+ * @size: number of lines
+ * Return: return none
  */
 
 void print_triangle(int size)
@@ -11,21 +11,14 @@ void print_triangle(int size)
 	int index;
 	int times;
 
-	if (size <= 0)
+	for (index = 0; index < size; index++)
 	{
-		for (times = 1; times <= size; times++)
-		{
-			for (index = size - times; index > 0; index--)
-				_putchar(' ');
-
-			for (index = 0; index < times; index++)
-				_putchar('#');
-
-			if (times == size)
-				continue;
-
+		for (times = 1; times < (size - index); times++)
+			_putchar(' ');
+		for (times--; times < size; times++)
+			_putchar(35);
+		if (index < (size - 1))
 			_putchar('\n');
-		}
 	}
 
 	_putchar('\n');
