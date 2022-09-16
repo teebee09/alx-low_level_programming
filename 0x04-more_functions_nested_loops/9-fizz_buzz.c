@@ -1,4 +1,4 @@
-#include <stdio.o>
+#include <stdio.h>
 
 /**
  * main - print number 1-100, FizzBuzz for multiple of 3&5
