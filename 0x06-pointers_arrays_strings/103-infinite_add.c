@@ -47,6 +47,7 @@ char *add_strings(char *n1, char *n2, char *r, int r_index)
 
 	return (r + r_index + 1);
 }
+
 /**
  * infinite_add - function that adds two numbers
  * @n1: first number
