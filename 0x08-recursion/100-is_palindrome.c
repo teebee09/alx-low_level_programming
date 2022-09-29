@@ -53,7 +53,7 @@ int is_palindrome(char *s)
 	int i;
 
 	i = _strlen(s) - 1;
-	return (is_palindrome(0, i, s));
+	return (check_palindrome(0, i, s));
 }
 
 
