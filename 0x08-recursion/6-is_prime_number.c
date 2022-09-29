@@ -27,5 +27,5 @@ int find_prime(int num, int divisor)
 
 int is_prime_number(int n)
 {
-	is_prime_number(n, 2)
+	return (find_prime(n, 2));
 }
