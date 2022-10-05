@@ -22,10 +22,10 @@ char *str_concat(char *s1, char *s2)
 	if (s2 == NULL)
 		s2 = "";
 
-	while (*(s1 + 1))
+	while (*(s1 + i))
 		length1++, i++;
 
-	while (*(s2 + 1))
+	while (*(s2 + j))
 		length2++, j++;
 	length2++; /* add null terminator to length */
 
