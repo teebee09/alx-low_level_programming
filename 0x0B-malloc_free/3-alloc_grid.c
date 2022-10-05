@@ -28,7 +28,7 @@ int **alloc_grid(int width, int height)
 
 		if (twoDim[hgt_i] == NULL)/* validate memory */
 		{
-			for (hgt_i = 0; hgt_i >= 0; hgt_i++)
+			for (hgt_i = 0; hgt_i < height; hgt_i++)
 				free(twoDim[hgt_i]);
 
 			free(twoDim);
