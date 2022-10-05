@@ -17,14 +17,14 @@ int **alloc_grid(int width, int height)
 	if (width <= 0 || height <= 0)/* validate inpu */
 		return (NULL);
 
-	twoDim = malloc(sizeof(int *));/* allocate memory to row */
+	twoDim = malloc(height * sizeof(int *));/* allocate memory to row */
 
 	if (twoDim == NULL)/* validate memory */
 		return (NULL);
 
-	for (hgt_i = 0; hgt_i < height; hgt_i++)/* allocate memory for column of each row */
+	for (hgt_i = 0; hgt_i < height; hgt_i++)/* alloc memory for col of each row */
 	{
-		twoDim[hgt_i] = malloc(sizeof(int));
+		twoDim[hgt_i] = malloc(width * sizeof(int));
 
 		if (twoDim[hgt_i] == NULL)/* validate memory */
 		{
@@ -34,7 +34,7 @@ int **alloc_grid(int width, int height)
 			free(twoDim);
 			return (NULL);
 		}
-		
+
 		for (widt_i = 0; widt_i < width; widt_i++)
 			twoDim[hgt_i][widt_i] = 0;
 	}
