@@ -2,21 +2,6 @@
 #include <stdlib.h>
 
 /**
- * _strlen - calculate and return string length
- * @str: string to check
- * Return: return pointer
- */
-
-int _strlen(char *str)
-{
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-		;
-	return (i);
-}
-
-/**
  * string_nconcat - fncs concatenate two strings
  * @s1: first string to copy
  * @s2: second string to copy
@@ -27,33 +12,34 @@ int _strlen(char *str)
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *ptr;
-	int numb, len, i, j;
+	unsigned int i, j, k;
 
-	numb = 0;
-
-	if (s1 == NULL) /* account for NULL strings */
-		s1 = "";
+	if (s1 == NULL)
+		i = 0;
+	else
+	{
+		for (i = 0; s1[i]; i++)
+			;
+	}
 	if (s2 == NULL)
-		s2 = "";
-	if (numb < 0) /* account for negative n bytes */
-		return (NULL);
-	if (numb >= _strlen(s2)) /* account for n too big */
-		numb = _strlen(s2);
-
-	len = _strlen(s1) + numb + 1; /* +1 to account for null pointer */
-
-	ptr = malloc(sizeof(*ptr) * len); /* malloc and check for error */
+		j = 0;
+	else
+	{
+		for (j = 0; s2[j]; j++)
+			;
+	}
+	if (j > n)
+		j = n;
+	ptr = malloc(sizeof(char) * (i + j + 1));
 	if (ptr == NULL)
 		return (NULL);
-
-	for (i = 0; s1[i] != '\0'; i++) /* concat */
-		ptr[i] = s1[i];
-	for (j = 0; j < numb; j++)
-		ptr[i + j] = s2[j];
+	for (k = 0; k < i; k++)
+		ptr[k] = s1[k];
+	for (k = 0; k < j; k++)
+		ptr[k + i] = s2[k];
 	ptr[i + j] = '\0';
 
 	return (ptr);
-
 }
 
 
