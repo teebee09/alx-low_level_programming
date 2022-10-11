@@ -2,13 +2,6 @@
 #define DOG_H
 
 /**
- * File: dog.h
- * Auth: Tijani H. Oluwatobiloba
- * Desc: Header file contains all function prototypes
- *       to be used in 0x0E-structures_typedef directory
- */
-
-/**
  * struct dog - A new type describing dog
  * @name: the name of dog
  * @age: the age of dog
