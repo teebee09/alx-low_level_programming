@@ -4,7 +4,7 @@
 /**
  * File: dog.h
  * Auth: Tijani H. Oluwatobiloba
- * Desc: This file contains all function prototypes
+ * Desc: Header file contains all function prototypes
  *       to be used in 0x0E-structures_typedef directory
  */
 
@@ -15,7 +15,8 @@
  * @owner: the owner of the dog
  */
 
-struct dog {
+struct dog
+{
 	char *name;
 	float age;
 	char *owner;
