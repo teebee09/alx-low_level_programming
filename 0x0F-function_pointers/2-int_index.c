@@ -18,7 +18,7 @@ int int_index(int *array, int size, int (*cmp)(int))
 
 	/* iterate thru array and call searching function */
 	for (i = 0; i < size; i++)
-		if (cmp(*(array[i])))/* if returned true */
+		if (cmp(array[i]) != 0)/* if returned true */
 			return (i);
 
 	return (-1);
