@@ -8,11 +8,11 @@
 
 int _strlen(const char *str)
 {
-	int length;
+	int len;
 
-	for (length = 0; str[length] != '\0'; length++)
+	for (len = 0; str[len] != '\0'; len++)
 		;
-	return (length);
+	return (len);
 }
 
 /**
@@ -44,6 +44,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	else
 	{
 		temp = *head;
+
 		while (temp->next != NULL)
 			temp = temp->next;
 		temp->next = new_node;

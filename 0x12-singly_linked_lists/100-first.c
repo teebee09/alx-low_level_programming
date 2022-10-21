@@ -1,5 +1,7 @@
 #include <stdio.h>
+
 void startUpFncs(void) __attribute__ ((constructor));
+
 /**
  * startUpFncs - fncs that executes before main function
  * @void: input
