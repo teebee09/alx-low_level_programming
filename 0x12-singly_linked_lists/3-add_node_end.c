@@ -1,64 +1,33 @@
 #include "lists.h"
 
 /**
- * _strlen - fncs the prints the length of a string
- * @str: the string to check
- * Return: return 0
- */
-
-int _strlen(const char *str)
-{
-	int len;
-
-	for (len = 0; str[len] != '\0'; len++)
-		;
-	return (len);
-}
-
-/**
- * add_node - fncs that adds a new node at the beginning of a list_t list
- * @head: linked list
- * @str: data for new node/string
- * Return: address of a new element, NULL if failed
+ * add_node_end - append node to list pointed
+ * @head: pointer to pointer
+ * @str: string to initialize new node
+ * Return: new or NULL
  */
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new_node, *temp; /* create new node */
+	size_t i = 0;
+	list_t *last = *head;
+	list_t *new = malloc(sizeof(list_t));
 
-	if (str == NULL) /* validate input */
+	if (new == NULL)
 		return (NULL);
-	if (strdup(str) == NULL) /*check if strdup malloc errored */
-		return (NULL);
-
-	new_node = malloc(sizeof(list_t)); /* malloc for new node */
-	if (new_node == NULL)
-		return (NULL);
-
-	new_node->str = strdup(str); /* set node values */
-	new_node->len = _strlen(str);
-	new_node->next = NULL;
-
-	if (*head == NULL) /* if no list nodes, set new_node to beginning */
-		*head = new_node;
-	else
+	new->next = NULL;
+	new->str = strdup(str);
+	if (new->str)
+		while (str[i])
+			++i;
+	new->len = i;
+	if (last)
 	{
-		temp = *head;
-
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = new_node;
+		while (last->next)
+			last = last->next;
+		last->next = new;
 	}
-
-	return (new_node);
+	else
+		*head = new;
+	return (new);
 }
-
-
-
-
-
-
-
-
-
-

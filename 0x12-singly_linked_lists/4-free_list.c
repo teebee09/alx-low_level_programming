@@ -1,18 +1,20 @@
 #include "lists.h"
 
 /**
- * free_list - fncs that frees a list
- * @head: linked list
+ * free_list - Frees a list_t list.
+ * @head: A pointer to the list_t list.
  * Return: return void
  */
 
 void free_list(list_t *head)
 {
-	if (head == NULL)
-		return;
+	list_t *temp;
 
-	if (head->next != NULL)
-		free_list(head->next);
-	free(head->str);
-	free(head);
+	while (head)
+	{
+		tmp = head->next;
+		free(head->str);
+		free(head);
+		head = tmp;
+	}
 }
