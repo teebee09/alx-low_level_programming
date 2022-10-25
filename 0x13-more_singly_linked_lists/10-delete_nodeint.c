@@ -25,6 +25,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		free(temp);
 		return (1);
 	}
+
 	/* iterate tmp to idx prior to idx we want to delete */
 	while (i < (index - 1) && temp != NULL)
 	{
