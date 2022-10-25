@@ -41,6 +41,23 @@ int count_num_node(const listint_t *head)
  * Return: 0 if no loop, 1 if loop
  */
 
+int loop(const listint_t *head)
+{
+	const listint_t *index1, *index2;
+
+	turtle = hare = head;
+
+	while (turtle != NULL && hare != NULL)
+	{
+		turtle = turtle->next;
+		hare = hare->next->next;
+
+		if (turtle == hare)
+			return ((1);
+	}
+	return (0);
+}
+
 /**
  * print_listint_safe - fncs that prints a listint_t list
  * @head: pointer to the address of the first node of the list
