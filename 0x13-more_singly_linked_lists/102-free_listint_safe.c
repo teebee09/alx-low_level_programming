@@ -7,9 +7,9 @@
  *         Otherwise - the number of unique nodes in the list.
  */
 
-size_t count_num_node(const listint_t *head)
+size_t count_num_node(listint_t *head)
 {
-	const listint_t *index1, *index2;
+	listint_t *index1, *index2;
 	size_t nodes = 1;
 
 	if (head == NULL || head->next == NULL)
