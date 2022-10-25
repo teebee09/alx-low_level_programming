@@ -1,47 +1,30 @@
 #include "lists.h"
 
 /**
- * count_num_node - count the number of unique node in looped list
- * @head: A pointer to the head of the listint_t to check.
- * Return: If the list is not looped - 0
- *         Otherwise - the number of unique nodes in the list.
+ * _realoc - reallocates memory for an array of pointers
+ * to the node in a linked list
+ * @list: the old list to append
+ * @size: size of the new list (always one more than the old list)
+ * @new: new node to add to the list
+ * Return: pointer to the new list
  */
 
-size_t count_num_node(listint_t *head)
+listint_t **_realoc(listint_t **list, size_t size, listint_t *new)
 {
-	listint_t *index1, *index2;
-	size_t nodes = 1;
+	listint_t **newlist;
+	size_t i;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	index1 = head->next;
-	index2 = (head->next)->next;
-
-	while (index2)
+	newlist = malloc(size * sizeof(listint_t *));
+	if (newlist == NULL)
 	{
-		if (index1 == index2)
-		{
-			index1 = index2;
-			while (index1 != index2)
-			{
-				nodes++;
-				index1 = index1->next;
-				index2 = index2->next;
-			}
-			index1 = index1->next;
-			while (index1 != index2)
-			{
-				nodes++;
-				index1 = index1->next;
-			}
-
-			return (nodes);
-		}
-		index1 = index1->next;
-		index2 = (index2->next)->next;
+		free(list);
+		exit(98);
 	}
-	return (0);
+	for (i = 0; i < size - 1; i++)
+		newlist[i] = list[i];
+	newlist[i] = new;
+	free(list);
+	return (newlist);
 }
 
 /**
@@ -50,35 +33,34 @@ size_t count_num_node(listint_t *head)
  * Return: return the number of node on the list
  */
 
-size_t free_listint_safe(listint_t **h)
+size_t free_listint_safe(listint_t **head)
 {
-	listint_t *temp;
-	size_t nodes, i;
+	listint_t *next;
+	listint_t **list = NULL;
+	size_t i, node = 0;
 
-	nodes = count_num_node(*h);
+	if (head == NULL || *head == NULL)
+		return (node);
 
-	if (nodes == 0)
+	while (*head != NULL)
 	{
-		for (; h != NULL && *h != NULL; nodes++)
+		for (i = 0; i < node; i++)
 		{
-			temp = (*h)->next;
-			free(*h);
-			*h = temp;
+			if (*head == list[i])
+			{
+				*head = NULL;
+				free(list);
+				return (node);
+			}
 		}
+		node++;
+		list = _realoc(list, node, *head);
+		next = (*head)->next;
+		free(*head);
+		*head = next;
 	}
-	else
-	{
-		for (i = 0; i < nodes; i++)
-		{
-			temp = (*h)->next;
-			free(*h);
-			*h = temp;
-		}
-		*h = NULL;
-	}
-
-	h = NULL;
-	return (nodes);
+	free(list);
+	return (node);
 }
 
 

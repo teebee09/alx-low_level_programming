@@ -45,15 +45,15 @@ int loop(const listint_t *head)
 {
 	const listint_t *index1, *index2;
 
-	turtle = hare = head;
+	index1 = index2 = head;
 
-	while (turtle != NULL && hare != NULL)
+	while (index1 != NULL && index2 != NULL)
 	{
-		turtle = turtle->next;
-		hare = hare->next->next;
+		index1 = index1->next;
+		index2 = index2->next->next;
 
-		if (turtle == hare)
-			return ((1);
+		if (index1 == index2)
+			return (1);
 	}
 	return (0);
 }
@@ -66,27 +66,37 @@ int loop(const listint_t *head)
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nodes, i = 0;
+	int i = 0;
+	int loop_found;
+	size_t nodes = 0;
+	const listint_t *temp;
 
-	nodes = count_num_node(head);
+	if (head == NULL)
+		exit(98);
 
-	if (nodes == 0)
+	loop_found = loop(head);
+
+	if (loop_found == 1) /* print upto last node before loop if loop */
 	{
-		for (; head != NULL; nodes++)
+		i = count_num_node(head);
+		for (loop_found = 0; loop_found < i; loop_found++)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			printf("[%p] %d\n", (void *)temp, temp->n);
+			nodes += 1;
+			temp = temp->next;
 		}
 	}
-	else
+	else if (loop_found == 0) /* print regularly upto NULL if no loop */
 	{
-		for (i = 0; i < nodes; i++)
+		temp = head;
+		while (temp != NULL)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			printf("[%p] %d\n", (void *)temp, temp->n);
+			nodes += 1;
+			temp = temp->next;
 		}
-		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
+
 	return (nodes);
 }
 
