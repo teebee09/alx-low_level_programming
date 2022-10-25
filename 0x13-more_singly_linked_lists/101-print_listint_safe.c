@@ -7,7 +7,7 @@
  *         Otherwise - the number of unique nodes in the list.
  */
 
-size_t count_num_node(const listint_t *head)
+int count_num_node(const listint_t *head)
 {
 	const listint_t *index1, *index2;
 	size_t nodes = 0;
@@ -34,6 +34,12 @@ size_t count_num_node(const listint_t *head)
 	}
 	return (0);
 }
+
+/**
+ * loop - find if there's a loop in linked list
+ * @head: pointer to head pointer of linked list
+ * Return: 0 if no loop, 1 if loop
+ */
 
 /**
  * print_listint_safe - fncs that prints a listint_t list
