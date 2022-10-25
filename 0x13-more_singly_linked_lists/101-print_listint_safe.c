@@ -10,7 +10,7 @@
 int count_num_node(const listint_t *head)
 {
 	const listint_t *index1, *index2;
-	size_t nodes = 0;
+	int nodes = 0;
 
 	index1 = index2 = head;
 
@@ -22,7 +22,7 @@ int count_num_node(const listint_t *head)
 
 		if (index1 == index2)
 		{
-			index1 = index2;
+			index1 = head;
 			while (index1 != index2)
 			{
 				index1 = index1->next;
