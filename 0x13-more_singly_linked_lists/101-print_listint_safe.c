@@ -10,36 +10,27 @@
 size_t count_num_node(const listint_t *head)
 {
 	const listint_t *index1, *index2;
-	size_t nodes = 1;
+	size_t nodes = 0;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
+	index1 = index2 = head;
 
-	index1 = head->next;
-	index2 = (head->next)->next;
-
-	while (index2)
+	while (index1 != NULL && index2 != NULL)
 	{
+		index1 = index1->next;
+		index2 = index2->next->next;
+		nodes++;
+
 		if (index1 == index2)
 		{
 			index1 = index2;
 			while (index1 != index2)
 			{
-				nodes++;
 				index1 = index1->next;
 				index2 = index2->next;
-			}
-			index1 = index1->next;
-			while (index1 != index2)
-			{
 				nodes++;
-				index1 = index1->next;
 			}
-
 			return (nodes);
 		}
-		index1 = index1->next;
-		index2 = (index2->next)->next;
 	}
 	return (0);
 }
