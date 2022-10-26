@@ -30,11 +30,10 @@ size_t free_listint_safe(listint_t **head)
 			comp = comp->next;
 		}
 		count_new++;
-		temp = h->next;
-		free(h);
-		h = temp;
+		temp = (*head)->next;
+		free(*head);
+		*head = temp;
 	}
-	*head = temp;
 	free(comp);
 	return (count_new);
 }
