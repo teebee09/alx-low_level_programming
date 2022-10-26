@@ -4,6 +4,8 @@
 #include <stdio.h> /* printf */
 #include <stdlib.h> /* malloc, free */
 #include <string.h> /* size_t */
+#include <stdarg.h>
+#include <unistd.h>
 
 /**
  * struct listint_s - singly linked list
