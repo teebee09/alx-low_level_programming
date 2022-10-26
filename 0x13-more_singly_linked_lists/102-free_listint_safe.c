@@ -32,8 +32,9 @@ size_t free_listint_safe(listint_t **head)
 		count_new++;
 		temp = h->next;
 		free((void *)h);
-		*head = temp;
+		h = temp;
 	}
+	*head = temp;
 	free(comp);
 	return (count_new);
 }
