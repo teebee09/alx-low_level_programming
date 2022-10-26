@@ -1,73 +1,39 @@
 #include "lists.h"
 
 /**
- * _realoc - reallocates memory for an array of pointers
- * to the node in a linked list
- * @list: the old list to append
- * @size: size of the new list (always one more than the old list)
- * @new: new node to add to the list
- * Return: pointer to the new list
- */
-
-listint_t **_realoc(listint_t **list, size_t size, listint_t *new)
-{
-	listint_t **newlist;
-	size_t i;
-
-	newlist = malloc(size * sizeof(listint_t *));
-	if (newlist == NULL)
-	{
-		free(list);
-		exit(98);
-	}
-	for (i = 0; i < size - 1; i++)
-		newlist[i] = list[i];
-	newlist[i] = new;
-	free(list);
-	return (newlist);
-}
-
-/**
- * free_listint_safe - fncs that frees a listint_t list
- * @h: pointer to the address of the first node of the list
- * Return: return the number of node on the list
+ * free_listint_safe - function to free list
+ * @head: pointer to the pointer of the list
+ * Return: count
  */
 
 size_t free_listint_safe(listint_t **head)
 {
-	listint_t *next;
-	listint_t **list = NULL;
-	size_t i, node = 0;
+	size_t count_new = 0, count_comp = 0;
+	listint_t *temp, *h, *comp;
 
 	if (head == NULL || *head == NULL)
-		return (node);
-
-	while (*head != NULL)
+		return (0);
+	h = comp = temp = *head;
+	count_new = 0;
+	while (h != NULL)
 	{
-		for (i = 0; i < node; i++)
+		comp = *head;
+		count_comp = 0;
+		while (count_new > count_comp)
 		{
-			if (*head == list[i])
+			if (temp == comp)
 			{
 				*head = NULL;
-				free(list);
-				return (node);
+				return (count_new);
 			}
+			count_comp++;
+			comp = comp->next;
 		}
-		node++;
-		list = _realoc(list, node, *head);
-		next = (*head)->next;
-		free(*head);
-		*head = next;
+		count_new++;
+		temp = h->next;
+		free((void *)h);
+		h = temp;
 	}
-	free(list);
-	return (node);
+	*head = temp;
+	return (count_new);
 }
-
-
-
-
-
-
-
-
-
