@@ -12,7 +12,7 @@ size_t free_listint_safe(listint_t **head)
 	listint_t *temp, *h, *comp;
 
 	if (head == NULL || *head == NULL)
-		return (0);
+		return (count_new);
 	h = comp = temp = *head;
 	count_new = 0;
 	while (h != NULL)
