@@ -1,54 +1,101 @@
 #include "lists.h"
 
 /**
- * free_listint_safe - Free a list that may or may not loop,
- * set start of list to NULL
- * @head: Pointer to pointer to the start of the list
- * Return: Size of the list that has been freed
+ * looped_listint_count - Counts the number of unique nodes
+ *                      in a looped listint_t linked list
+ * @head: A pointer to the head of the listint_t to check.
+ * Return: If the list is not looped - 0.
+ *        Otherwise - the number of unique nodes in the list
+ */
+
+size_t looped_listint_count(listint_t *head)
+{
+	listint_t *tortoise, *hare;
+	size_t nodes = 1;
+
+	if (head == NULL || head->next == NULL)
+	{
+		return (0);
+	}
+	tortoise = head->next;
+	hare = (head->next)->next;
+
+	while (hare)
+	{
+		if (tortoise == hare)
+		{
+			tortoise = head;
+			while (tortoise != hare)
+			{
+				nodes++;
+				tortoise = tortoise->next;
+				hare = hare->next;
+			}
+			tortoise = tortoise->next;
+			while (tortoise != hare)
+			{
+				nodes++;
+				tortoise = tortoise->next;
+			}
+			return (nodes);
+		}
+		tortoise = tortoise->next;
+		hare = (hare->next)->next;
+	}
+	return (0);
+}
+
+/**
+ * free_listint_safe - Frees a listint_t list safely (ie
+ *                   can free lists containing loops)
+ * @head: A pointer to the address of
+ *    the head of the listint_t list.
+ * Return: The size of the list that was freed.
+ * Desc: funcs that sets the head to NULL
  */
 
 size_t free_listint_safe(listint_t **head)
 {
-	listint_t *killnode;
-	listint_t *current;
-	listadd_t *headadd;
-	listadd_t *checker;
-	size_t count;
+	listint_t *temp;
+	size_t nodes, index;
 
-	count = 0;
-	current = *head;
-	headadd = NULL;
-	if (head != NULL)
+	nodes = looped_listint_count(*head);
+
+	if (nodes == 0)
 	{
-		while (current != NULL)
+		for (; head != NULL && *head != NULL; nodes++)
 		{
-			checker = headadd;
-			while (checker != NULL)
-			{
-				if (current == checker->address)
-				{
-					free(current);
-					free_listadd(headadd);
-					*head = NULL;
-					return (count);
-				}
-				checker = checker->next;
-			}
-			killnode = current;
-			if (add_nodeaddress(&headadd, current) == NULL)
-			{
-				free_listadd(headadd);
-				exit(98);
-			}
-			current = current->next;
-			free(killnode);
-			count++;
+			temp = (*head)->next;
+			free(*head);
+			*head = temp;
 		}
-		free_listadd(headadd);
+	}
+	else
+	{
+		for (index = 0; index < nodes; index++)
+		{
+			temp = (*head)->next;
+			free(*head);
+			*head = temp;
+		}
 		*head = NULL;
 	}
-	return (count);
+	head = NULL;
+
+	return (nodes);
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
