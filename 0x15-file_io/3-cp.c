@@ -1,5 +1,9 @@
 #include "main.h"
 
+int close_error(int fd);
+void read_error(char *filename);
+void write_error(char *filename);
+
 /**
  * main - copies the content of a file to another file.
  * @argc: argument counter.
@@ -10,7 +14,7 @@
 int main(int argc, char *argv[])
 {
 	char buffer[1024];
-	int fd_file_from, fd_file_to;
+	int file_from, file_to;
 	ssize_t bytes_counted = 1;
 
 	/* check number of arguments */
@@ -20,11 +24,11 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 	/* open and check fd for file_from */
-	fd_file_from = open(argv[1], O_RDONLY);
-	if (fd_file_from < 0)
+	file_from = open(argv[1], O_RDONLY);
+	if (file_from < 0)
 	{
 		write_error(argv[2]);
-		close_error(fd_file_from);
+		close_error(file_from);
 		exit(99);
 	}
 
@@ -32,35 +36,35 @@ int main(int argc, char *argv[])
 	while (bytes_counted)
 	{
 		/* read the next 1020 bytes in file_from and check read error */
-		bytes_counted = read(fd_file_from, buffer, 1024);
+		bytes_counted = read(file_from, buffer, 1024);
 		if (bytes_counted < 0)
 		{
 			read_error(argv[1]);
-			close_error(fd_file_from);
-			close_error(fd_file_to);
+			close_error(file_from);
+			close_error(file_to);
 			exit(98);
 		}
 		/* check buffer end of file */
 		if (bytes_counted == 0)
 			break;
 		/* write the output in file_to and check write error */
-		bytes_counted = write(fd_file_to, buffer, bytes_counted);
+		bytes_counted = write(file_to, buffer, bytes_counted);
 		if (bytes_counted < 0)
 		{
 			write_error(argv[2]);
-			close_error(fd_file_from);
-			close_error(fd_file_to);
+			close_error(file_from);
+			close_error(file_to);
 			exit(99);
 		}
 	}
 
 	/* close and check fd for file_from and file_to */
-	if (close_error(fd_file_from) < 0)
+	if (close_error(file_from) < 0)
 	{
-		close_error(fd_file_to);
+		close_error(file_to);
 		exit(100);
 	}
-	if (close_error(fd_file_to) < 0)
+	if (close_error(file_to) < 0)
 		exit(100);
 	return (0);
 }
