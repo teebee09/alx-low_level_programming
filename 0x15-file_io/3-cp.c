@@ -1,9 +1,5 @@
 #include "main.h"
 
-int close_error(int fd);
-void read_error(char *filename);
-void write_error(char *filename);
-
 /**
  * main - copies the content of a file to another file.
  * @argc: argument counter.
