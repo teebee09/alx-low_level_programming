@@ -27,6 +27,14 @@ int main(int argc, char *argv[])
 	file_from = open(argv[1], O_RDONLY);
 	if (file_from < 0)
 	{
+		read_error(argv[1]);
+		exit(98);
+	}
+
+	/* open and check fd for file_to */
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (file_to < 0)
+	{
 		write_error(argv[2]);
 		close_error(file_from);
 		exit(99);
